@@ -1,0 +1,56 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Python test files
+*.log
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Flask
+instance/
+.webassets-cache
+
+# PyCharm
+.idea/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Pylint
+pylint-report.txt
+pylint-globalrc.conf
+
+# SQLite
+*.sqlite3
+*.db

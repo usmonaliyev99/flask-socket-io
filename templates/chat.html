@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ room }}</title>
+  <link rel="icon" type="image/x-icon" href="public/assets/favicon.ico" />
+  <link rel="stylesheet" href="public/assets/chat.css" />
+</head>
+
+<body>
+  <div class="title">
+    <button>Back</button>
+    <div></div>
+  </div>
+
+  <div class="content">
+    <div id="messages"></div>
+    <div id="logs"></div>
+  </div>
+
+  <div id="input-container">
+    <input type="text" id="messageInput" placeholder="Type your message and press Enter" maxlength="100" />
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.1/socket.io.min.js"></script>
+  <script src="public/scripts/chat.js"></script>
+</body>
+
+</html>

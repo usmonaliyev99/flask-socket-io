@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 30px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            padding: 30px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="loginForm">
+        <div style="display: flex; justify-content: center;">
+            <h1>SocketIO</h1>
+        </div>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required />
+        <input type="text" id="room" name="room" placeholder="Enter room name" required />
+        <button type="submit">Join</button>
+    </form>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const username = document.getElementById("username").value.trim();
+            const room = document.getElementById("room").value.trim();
+
+            if (username && room) {
+
+                window.location.href = `/?username=${username}&room=${room}`;
+
+            } else {
+                alert("Please fill in both fields.");
+            }
+        });
+    </script>
+</body>
+
+</html>

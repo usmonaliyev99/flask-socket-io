@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  background-color: #ececec;
+}
+
+input {
+  all: unset;
+}
+
+input,
+button {
+  padding: 10px;
+  font-size: 25px;
+}
+
+.title {
+  height: 10%;
+}
+
+.content {
+  height: 75%;
+  display: flex;
+  padding: 20px;
+}
+
+#messages {
+  border-radius: 10px;
+  height: 100%;
+  overflow-y: scroll;
+  width: 70%;
+  margin-right: 10px;
+  background-color: #fdfdfd;
+}
+
+#logs {
+  border-radius: 10px;
+  height: 100%;
+  width: 30%;
+  overflow-y: scroll;
+  margin-left: 10px;
+  background-color: #fdfdfd;
+}
+
+#input-container {
+  height: 10%;
+  display: flex;
+}
+
+#messageInput {
+  margin: 0 20px 0 20px;
+  width: 100%;
+  background-color: #fdfdfd;
+}
