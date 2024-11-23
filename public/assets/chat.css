@@ -37,6 +37,15 @@ button {
   width: 70%;
   margin-right: 10px;
   background-color: #fdfdfd;
+  padding: 40px 40px;
+  font-size: large;
+}
+
+.message {
+  border: 1px solid black;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: inherit;
 }
 
 #logs {
@@ -46,6 +55,15 @@ button {
   overflow-y: scroll;
   margin-left: 10px;
   background-color: #fdfdfd;
+  padding: 20px 20px;
+}
+
+.log {
+  border: 1px solid black;
+  height: 40px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 #input-container {

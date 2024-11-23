@@ -1,36 +1,65 @@
+import json
+from datetime import datetime
 from flask import request
-from app import socketio
+from app import socketio, redis
 from flask_socketio import (
-    send,
     emit,
     join_room,
     close_room,
-    rooms,
     leave_room,
-    disconnect,
 )
 
 
-# Define connection event with authentication
-@socketio.on("connect")
-def connect():
-    print(f"Client connected: {request.sid}")
-
-
 @socketio.on("disconnect")
-def leave():
-    print(f"Client disconnected: {request.sid}")
+def disconnect() -> None:
+    try:
+        user = redis.hmget("users", request.sid)
+        redis.hdel("users", request.sid)
+
+        user = json.loads(user[0])
+
+        if not redis.hlen("users"):
+            return close_room(user["room"])
+
+        data = {
+            "username": user["username"],
+            "time": datetime.now().strftime("%H:%M:%S"),
+        }
+        emit("leave-member", data, to=user["room"])
+
+    except Exception as e:
+        print(e)
 
 
 @socketio.event
-def message(json):
-    emit(
-        "message",
-        {"message": json["message"], "username": json["username"]},
-        to=json["room"],
-    )
+def message(json) -> None:
+    data = {
+        "sid": request.sid,
+        "username": json["username"],
+        "message": json["message"],
+        "time": datetime.now().strftime("%d.%m.%Y %H:%M:%S"),
+    }
+
+    emit("message", data, to=json["room"], include_self=False)
 
 
 @socketio.event
-def join(json):
-    join_room(json["room"])
+def join(ask) -> None:
+    # register user in room
+    user = {request.sid: json.dumps({"username": ask["username"], "room": ask["room"]})}
+    redis.hmset("users", user)
+
+    redis.hset("rooms", ask["room"], ask["username"])
+
+    join_room(ask["room"])
+
+    data = {
+        "username": ask["username"],
+        "time": datetime.now().strftime("%H:%M:%S"),
+    }
+    emit("new-member", data, to=ask["room"])
+
+
+@socketio.event
+def leave(json) -> None:
+    disconnect()
